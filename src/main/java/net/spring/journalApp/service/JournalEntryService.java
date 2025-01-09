@@ -56,25 +56,23 @@ public class JournalEntryService {
     }
 
     @Transactional
-    public void deleteById(ObjectId id, String username) {
-
+    public boolean deleteById(ObjectId id, String username) {
+        boolean removedOrNot = false;
         try{
             User user = userService.findByUsername(username);
-            user.getJournalEntries().removeIf(x -> x.getId().equals(id));
-            userService.saveEntry(user);
-    //        List<JournalEntry> entries = user.getJournalEntries();
-    //        Optional<JournalEntry> saved = journalEntryRepository.findById(id);
-    //        if (saved.isPresent()) {
-    //            entries.remove(saved.get());
-    //            user.setJournalEntries(entries);
-    //            userService.saveEntry(user);
-    //        }
-            journalEntryRepository.deleteById(id);
-    }
+            boolean ifRemoved = user.getJournalEntries().removeIf(x -> x.getId().equals(id));
+
+            if(ifRemoved) {
+                userService.saveEntry(user);
+                journalEntryRepository.deleteById(id);
+            }
+            return ifRemoved;
+        }
         catch(Exception e) {
-        System.out.println(e);
-        throw new RuntimeException("An error occured ",e);
-    }
+            System.out.println(e);
+            throw new RuntimeException("An error occured ",e);
+        }
+//        return false;
     }
 
 }
