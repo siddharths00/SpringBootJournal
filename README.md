@@ -1,6 +1,6 @@
 # SpringBootJournal
 
-**SpringBootJournal** is a simple journal-like application designed to explore and learn the intricacies of Java, Spring, and Spring Boot. The goal is to create a functional, secure, and user-friendly application while experimenting with modern development practices and tools.
+**SpringBootJournal** is a simple journal-like application designed to explore and learn the intricacies of Java, Spring, and Spring Boot. The goal is to create a functional, secure, and user-friendly application while experimenting with modern development practices and tools. This is still a work in progress 😁.
 
 ---
 
